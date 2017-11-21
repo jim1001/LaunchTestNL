@@ -1,4 +1,8 @@
 ﻿script "card Behavior"
+on preOpenCard
+   put empty into field "diag" of card "card1"
+end preOpenCard
+
 command launchFile pFile
    local tSrc, tDest
    put "Command launchFile" into field "diag"
