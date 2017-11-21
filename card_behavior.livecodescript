@@ -1,14 +1,16 @@
 ﻿script "card Behavior"
 command launchFile pFile
+   local tSrc, tDest
    put "Command launchFile" into field "diag"
    answer "Command launchFile"
-   local tPath
-   put specialFolderPath("engine") & "/assets/" & pFile into tPath
-   if there is a file tPath then
-      launch URL ("file:" & tPath)
-   else 
-      answer "File not found:" && tPath
+   put specialFolderPath("engine") & "/assets/" & pFile into tSrc
+   if there is no file tSrc then
+      answer "File not found:" && tSrc
+      exit launchFile
    end if
+   put "/sdcard/" & pFile into tDest
+   put URL ("binfile:" & tSrc) into URL ("binfile:" & tDest)
+   launch URL ("file:" & tDest)
 end launchFile
 
 command myHello
